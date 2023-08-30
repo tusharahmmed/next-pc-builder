@@ -1,7 +1,6 @@
 import RootLayout from "@/layouts/RootLayout";
 import Image from "next/image";
 import styles from "@/styles/index.module.css";
-import CategoryCard from "@/components/sections/categoryCard/CategoryCard";
 import ProductCard from "@/components/sections/productCard/ProductCard";
 
 export default function Homepage() {
