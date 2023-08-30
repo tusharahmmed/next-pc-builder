@@ -6,7 +6,7 @@ import ProductCard from "@/components/sections/productCard/ProductCard";
 
 export default function Homepage() {
   return (
-    <div className="spacing-x py-8 bg-[#f2f4f8;]">
+    <div className="spacing-x py-8 bg-[#f2f4f8]">
       <div className={`${styles.heroWraper}`}>
         <div className="">
           <Image

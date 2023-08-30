@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  padding: 10px;
+  border-top: 1px solid #ecedef;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.title {
+  font-size: 15px;
+  color: #000;
+  font-weight: normal;
+  line-height: 16px;
+}
+.title:hover {
+  color: #e5330b;
+  text-decoration: underline;
+  cursor: pointer;
+}

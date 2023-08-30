@@ -10,9 +10,11 @@ const Header = () => {
     <header className="">
       <div className="spacing-x py-4 text-white bg-[#081621] flex items-center justify-between">
         <div>
-          <h1 className="text-2xl text-[#f58220]">
-            PC <span className="text-[#0089d0]">Tech</span>
-          </h1>
+          <Link href={"/"}>
+            <h1 className="text-2xl text-[#f58220]">
+              PC <span className="text-[#0089d0]">Tech</span>
+            </h1>
+          </Link>
         </div>
         <div className="w-[40%] hidden md:block lg:w-[50%]">
           <SearchBox />
@@ -37,13 +39,27 @@ const Header = () => {
       </div>
       <div className={`spacing-x ${styles.navWraper}`}>
         <div className={styles.nav}>
-          <p>Processor</p>
-          <p>Motherboard</p>
-          <p>Ram</p>
-          <p>Power</p>
-          <p>Storage</p>
-          <p>Monitor</p>
-          <p>Others</p>
+          <Link href={"/category/processor"}>
+            <p>Processor</p>
+          </Link>
+          <Link href={"/category/motherboard"}>
+            <p>Motherboard</p>
+          </Link>
+          <Link href={"/category/ram"}>
+            <p>Ram</p>
+          </Link>
+          <Link href={"/category/power"}>
+            <p>Power</p>
+          </Link>
+          <Link href={"/category/storage"}>
+            <p>Storage</p>
+          </Link>
+          <Link href={"/category/monitor"}>
+            <p>Monitor</p>
+          </Link>
+          <Link href={"/category/others"}>
+            <p>Others</p>
+          </Link>
         </div>
       </div>
     </header>

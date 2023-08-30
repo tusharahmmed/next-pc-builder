@@ -1,0 +1,17 @@
+.container {
+  display: inline-block;
+  margin: 0 7px 7px -2px;
+  background: rgba(55, 73, 187, 0.05);
+  border-radius: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  font-size: 14px;
+}
+.text {
+  color: #666;
+}
+.value {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
