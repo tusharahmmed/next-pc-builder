@@ -1,0 +1,19 @@
+.wraper {
+  position: relative;
+}
+.input {
+  border: none;
+  padding: 0 40px 0 20px;
+  font-weight: normal;
+  border-radius: 4px;
+  margin-bottom: 0;
+  color: #000;
+  height: 40px;
+  outline: none;
+}
+.icon {
+  position: absolute;
+  top: 22%;
+  right: 2%;
+  color: #000;
+}

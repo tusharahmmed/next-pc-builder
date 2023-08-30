@@ -10,3 +10,8 @@
 body {
   font-family: var(--local-font);
 }
+
+.spacing-x {
+  padding-left: 7%;
+  padding-right: 7%;
+}

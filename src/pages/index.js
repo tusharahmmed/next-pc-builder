@@ -2,7 +2,7 @@ import RootLayout from "@/layouts/RootLayout";
 
 export default function Homepage() {
   return (
-    <div>
+    <div className="h-screen">
       <h1 className="text-4xl">This is home page vr</h1>
     </div>
   );
