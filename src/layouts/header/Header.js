@@ -33,7 +33,10 @@ const Header = () => {
             </div>
           </div>
           <div className="ml-5">
-            <ButtonPcBuilder />
+            <Link href={"/pc-builder"}>
+              {" "}
+              <ButtonPcBuilder />
+            </Link>
           </div>
         </div>
       </div>
