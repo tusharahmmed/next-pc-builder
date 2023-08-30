@@ -1,0 +1,28 @@
+.item {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.img {
+  text-align: center;
+  border-bottom: 3px solid rgba(55, 73, 187, 0.03);
+  flex: 0 0 220px;
+  padding: 20px;
+  margin: 0;
+}
+.details {
+  padding: 15px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.details h4 {
+  color: #111;
+  margin-bottom: 15px;
+}
+.details p {
+  line-height: 22px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ef4a23;
+}
