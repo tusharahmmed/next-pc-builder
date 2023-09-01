@@ -1,5 +1,6 @@
 import styles from "@/styles/componensts/pcBuilderCard.module.css";
 import Image from "next/image";
+import Link from "next/link";
 import {IoMdClose} from "react-icons/io";
 import {LuRefreshCw} from "react-icons/lu";
 
@@ -65,7 +66,9 @@ const PcBuilderCard = (props) => {
         </div>
       </div>
       <div className={styles.actions}>
-        <button className={styles.btn}>Chose</button>
+        <Link href={"/pc-builder/motherboard"}>
+          <button className={styles.btn}>Chose</button>
+        </Link>
       </div>
     </div>
   );
