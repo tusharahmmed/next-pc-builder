@@ -77,7 +77,9 @@ PcBuilderPage.getLayout = function getLayout(page) {
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/categories`);
+  const res = await fetch(
+    `https://pc-builder-backend-delta.vercel.app/api/v1/categories`
+  );
   const result = await res.json();
 
   return {

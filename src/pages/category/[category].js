@@ -26,7 +26,9 @@ CategoryProducts.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/categories`);
+  const res = await fetch(
+    `https://pc-builder-backend-delta.vercel.app/api/v1/categories`
+  );
   const categories = await res.json();
 
   const paths = categories.data.map((item) => ({
@@ -39,7 +41,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const {category} = context.params;
 
-  const url = `${process.env.BASE_URL}/products/category/${category}`;
+  const url = `https://pc-builder-backend-delta.vercel.app/api/v1/products/category/${category}`;
 
   const res = await fetch(url);
   const data = await res.json();

@@ -11,7 +11,7 @@ const LoginPage = () => {
           <div>
             <span
               onClick={() =>
-                signIn("google", {callbackUrl: "http://localhost:3000/"})
+                signIn("google", {callbackUrl: "https://pctech.vercel.app/"})
               }>
               <ButtonPcBuilder text={"SignIn with Google"} />
             </span>

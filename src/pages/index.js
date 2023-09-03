@@ -59,8 +59,9 @@ Homepage.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const url = `${process.env.BASE_URL}/products`;
-  const res = await fetch(url);
+  const res = await fetch(
+    "https://pc-builder-backend-delta.vercel.app/api/v1/products"
+  );
   const data = await res.json();
   return {
     props: {data},

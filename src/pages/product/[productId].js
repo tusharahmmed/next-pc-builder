@@ -72,7 +72,9 @@ DetailsPage.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/products`);
+  const res = await fetch(
+    `https://pc-builder-backend-delta.vercel.app/api/v1/products`
+  );
   const products = await res.json();
 
   const paths = products.data.map((item) => ({
@@ -86,12 +88,14 @@ export const getStaticProps = async (context) => {
   const {productId} = context.params;
 
   // get product details
-  const res = await fetch(`${process.env.BASE_URL}/products/${productId}`);
+  const res = await fetch(
+    `https://pc-builder-backend-delta.vercel.app/api/v1/products/${productId}`
+  );
   const data = await res.json();
 
   // get related products
   const relatedResponse = await fetch(
-    `${process.env.BASE_URL}/products/related-products/${productId}`
+    `https://pc-builder-backend-delta.vercel.app/api/v1/products/related-products/${productId}`
   );
   const relatedProduct = await relatedResponse.json();
 

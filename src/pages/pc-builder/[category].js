@@ -25,7 +25,7 @@ CategorySelect.getLayout = function getLayout(page) {
 
 export const getServerSideProps = async (context) => {
   const {category} = context.params;
-  const url = `${process.env.BASE_URL}/products/category/${category}`;
+  const url = `https://pc-builder-backend-delta.vercel.app/api/v1/products/category/${category}`;
 
   const res = await fetch(url);
   const data = await res.json();
