@@ -24,8 +24,9 @@ const pcBuileSlice = createSlice({
       // update state
       state[category] = null;
     },
+    reset: () => initialState,
   },
 });
 
-export const {addItem, removeItem} = pcBuileSlice.actions;
+export const {addItem, removeItem, reset} = pcBuileSlice.actions;
 export const pcBuilderReducer = pcBuileSlice.reducer;

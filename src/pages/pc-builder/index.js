@@ -2,13 +2,28 @@ import PcBuilderCard from "@/components/sections/pcBuilder/PcBuilderCard";
 import RootLayout from "@/layouts/RootLayout";
 import {LuPcCase} from "react-icons/lu";
 import styles from "@/styles/pc-builder/pcBuilde.module.css";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getDetails} from "@/utils/helpers/pcBuilder";
+import swal from "sweetalert";
+import {reset} from "@/app/features/pc-builder/pcBuilderSlice";
 
 const PcBuilderPage = ({categories}) => {
+  const dispatch = useDispatch();
   const pcBuilder = useSelector((state) => state.pcBuilder);
 
   const {productCount, totalCost} = getDetails(pcBuilder);
+
+  const handlePcBuild = () => {
+    if (productCount > 6) {
+      dispatch(reset());
+      swal("You have successfully build your pc", {
+        title: "Complete!",
+        icon: "success",
+        button: false,
+        timer: 3000,
+      });
+    }
+  };
 
   return (
     <section className="px-[5%] lg:px-[10%] xl:px-[20%] py-8 bg-[#f2f4f8]">
@@ -17,8 +32,15 @@ const PcBuilderPage = ({categories}) => {
           <h1 className="text-2xl text-[#f58220]">
             PC <span className="text-[#0089d0]">Tech</span>
           </h1>
-          <div className="flex flex-col justify-center items-center">
-            <LuPcCase color="#EF4A23" size={22} />
+          <div
+            onClick={handlePcBuild}
+            className={`flex flex-col justify-center items-center ${
+              productCount == 7 ? "cursor-pointer" : "cursor-not-allowed"
+            }`}>
+            <LuPcCase
+              color={productCount == 7 ? "#EF4A23" : "#666666"}
+              size={22}
+            />
             <span className="text-[12px] text-[#666666] pt-[2px]">Build</span>
           </div>
         </div>
