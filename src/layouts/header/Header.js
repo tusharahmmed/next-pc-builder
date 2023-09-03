@@ -1,11 +1,12 @@
 import {BiSolidUser} from "react-icons/bi";
-import React from "react";
+import {useSession, signOut} from "next-auth/react";
 import {ButtonPcBuilder} from "@/components/ui/button/Button";
 import SearchBox from "@/components/ui/searchInput/SearchBox";
 import Link from "next/link";
 import styles from "@/styles/layout/header.module.css";
 
 const Header = () => {
+  const {data: session} = useSession();
   return (
     <header className="">
       <div className="spacing-x py-4 text-white bg-[#081621] flex items-center justify-between">
@@ -27,8 +28,16 @@ const Header = () => {
             <div className="ml-3">
               <p>Account</p>
               <p className="text-[12px] text-gray-300">
-                <Link href={"/register"}>Register</Link> or{" "}
-                <Link href={"/login"}>Login</Link>
+                {session ? (
+                  <span className="cursor-pointer" onClick={() => signOut()}>
+                    Log out
+                  </span>
+                ) : (
+                  <>
+                    <Link href={"/register"}>Register</Link> or{" "}
+                    <Link href={"/login"}>Login</Link>
+                  </>
+                )}
               </p>
             </div>
           </div>
