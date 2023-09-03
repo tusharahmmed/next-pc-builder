@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 db.js
-
+.env.local
 # testing
 /coverage
 

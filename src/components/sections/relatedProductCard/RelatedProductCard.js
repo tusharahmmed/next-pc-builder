@@ -1,12 +1,14 @@
 import styles from "@/styles/product/relatedProductCard.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
-const RelatedProductCard = () => {
+const RelatedProductCard = ({data}) => {
+  const {img, _id, name, price} = data;
   return (
     <div className={styles.container}>
       <div className="">
         <Image
-          src={"/images/products/processor/2.jpg"}
+          src={`/images${img}`}
           height={100}
           width={100}
           layout="responsive"
@@ -14,10 +16,10 @@ const RelatedProductCard = () => {
         />
       </div>
       <div className={styles.details}>
-        <h2 className={styles.title}>
-          Intel 10th Gen Core i3 10100F Processor
-        </h2>
-        <p className="font-bold text-[#e5330b]">8,200৳</p>
+        <Link href={`/product/${_id}`}>
+          <h2 className={styles.title}>${name}</h2>
+        </Link>
+        <p className="font-bold text-[#e5330b]">{price}৳</p>
       </div>
     </div>
   );

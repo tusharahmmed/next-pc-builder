@@ -3,7 +3,9 @@ import Image from "next/image";
 import styles from "@/styles/index.module.css";
 import ProductCard from "@/components/sections/productCard/ProductCard";
 
-export default function Homepage() {
+export default function Homepage({data}) {
+  const limitedData = data.data.slice(0, 10);
+
   return (
     <div className="spacing-x py-8 bg-[#f2f4f8]">
       <div className={`${styles.heroWraper}`}>
@@ -43,16 +45,9 @@ export default function Homepage() {
           <p className="subtitle">Check & Get Your Desired Product!</p>
         </div>
         <div className={styles.productWraper}>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {limitedData?.map((item) => (
+            <ProductCard key={item._id} data={item} />
+          ))}
         </div>
       </div>
     </div>
@@ -61,4 +56,13 @@ export default function Homepage() {
 
 Homepage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getStaticProps = async () => {
+  const url = `${process.env.BASE_URL}/products`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return {
+    props: {data},
+  };
 };

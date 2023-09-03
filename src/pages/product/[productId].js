@@ -1,13 +1,11 @@
 import RootLayout from "@/layouts/RootLayout";
 import Image from "next/image";
-import {useRouter} from "next/router";
 import styles from "@/styles/product/productDetails.module.css";
 import Badge from "@/components/ui/badge/Badge";
 import RelatedProductCard from "@/components/sections/relatedProductCard/RelatedProductCard";
 
-const DetailsPage = () => {
-  const router = useRouter();
-  const {productId} = router.query;
+const DetailsPage = ({data, relatedProducts}) => {
+  const {name, price, description, img, reviews, features} = data.data;
 
   return (
     <section className=" ">
@@ -18,21 +16,17 @@ const DetailsPage = () => {
             height={400}
             width={400}
             layout="responsive"
-            src={"/images/products/processor/1.jpg"}
+            src={`/images${img}`}
           />
         </div>
         <div>
-          <h1 className={styles.title}>
-            AMD Athlon 200GE AM4 Socket Desktop Processor with Radeon Vega 3
-            Graphics
-          </h1>
-          <Badge lebel={"Price:"} value={"7,000৳"} />
+          <h1 className={styles.title}>{name}</h1>
+          <Badge lebel={"Price:"} value={`${price}৳`} />
           <h2 className={styles.feature}>Key Features</h2>
           <ul className={styles.featureList}>
-            <li>Model: Athlon 200GE</li>
-            <li>Base Clock Speed 3.2GHz</li>
-            <li>Package AM4</li>
-            <li>PCI Express PCIe 3.0</li>
+            {features.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>
@@ -41,25 +35,19 @@ const DetailsPage = () => {
         <div>
           <div className={styles.container}>
             <h2 className={styles.subtitle}>Description</h2>
-            <p className={styles.p}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis quo
-              dolorem cupiditate pariatur dignissimos, voluptatum, saepe ipsum
-              repudiandae alias delectus inventore illo at corrupti omnis
-              voluptas velit recusandae, numquam exercitationem? Repudiandae
-              minima ducimus possimus illo natus vero nesciunt voluptatem
-              mollitia praesentium iste asperiores excepturi laboriosam maiores
-              tempore, libero quidem fugit consequuntur nihil tenetur
-              accusantium deleniti autem. Alias ipsam ad tempora quod deleniti,
-              distinctio fugit rem porro maxime. Similique tempore voluptatum ad
-              voluptate totam temporibus, impedit quibusdam esse minus.
-            </p>
+            <p className={styles.p}>{description}</p>
           </div>
           <div className={`mt-[20px] ${styles.container}`}>
             <h2 className={styles.subtitle}>Reviews</h2>
-            <p className={styles.p}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              quo. by <span className="font-bold">Tushar Ahmmed</span>
-            </p>
+
+            {reviews.map((item) => {
+              return (
+                <p key={item} className={styles.p}>
+                  {item.message} by{" "}
+                  <span className="font-bold">{item.user}</span>
+                </p>
+              );
+            })}
           </div>
         </div>
         <div className={`px-[20px] py-[10px] ${styles.container}`}>
@@ -67,8 +55,9 @@ const DetailsPage = () => {
             <h2 className={styles.relatedTitle}>Related Product</h2>
           </div>
           <div>
-            <RelatedProductCard />
-            <RelatedProductCard />
+            {relatedProducts.map((item) => (
+              <RelatedProductCard key={item._id} data={item} />
+            ))}
           </div>
         </div>
       </div>
@@ -80,4 +69,33 @@ export default DetailsPage;
 
 DetailsPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getStaticPaths = async () => {
+  const res = await fetch(`${process.env.BASE_URL}/products`);
+  const products = await res.json();
+
+  const paths = products.data.map((item) => ({
+    params: {productId: item._id},
+  }));
+
+  return {paths, fallback: false};
+};
+
+export const getStaticProps = async (context) => {
+  const {productId} = context.params;
+
+  // get product details
+  const res = await fetch(`${process.env.BASE_URL}/products/${productId}`);
+  const data = await res.json();
+
+  // get related products
+  const relatedResponse = await fetch(
+    `${process.env.BASE_URL}/products/related-products/${productId}`
+  );
+  const relatedProduct = await relatedResponse.json();
+
+  return {
+    props: {data, relatedProducts: relatedProduct?.data},
+  };
 };
