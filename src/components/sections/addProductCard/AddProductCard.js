@@ -1,9 +1,22 @@
 import Image from "next/image";
-import styles from "@/styles/componensts/addProductCard.module.css";
+import {useRouter} from "next/router";
 import Link from "next/link";
+import {useDispatch} from "react-redux";
+import {addItem} from "@/app/features/pc-builder/pcBuilderSlice";
+import styles from "@/styles/componensts/addProductCard.module.css";
 
 const AddProductCard = ({data}) => {
-  const {img, name, features, price, _id} = data;
+  const {img, name, features, price, _id, category} = data;
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleAddItem = () => {
+    const item = {img, name, category, price};
+
+    dispatch(addItem(item));
+    router.push("/pc-builder");
+  };
 
   return (
     <div className={styles.wraper}>
@@ -30,7 +43,9 @@ const AddProductCard = ({data}) => {
       <div className={styles.actionWraper}>
         <h4>{price}৳</h4>
         <div className="w-full flex justify-center items-center">
-          <button className={styles.button}>Add</button>
+          <button onClick={handleAddItem} className={styles.button}>
+            Add
+          </button>
         </div>
       </div>
     </div>

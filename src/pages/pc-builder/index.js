@@ -2,8 +2,14 @@ import PcBuilderCard from "@/components/sections/pcBuilder/PcBuilderCard";
 import RootLayout from "@/layouts/RootLayout";
 import {LuPcCase} from "react-icons/lu";
 import styles from "@/styles/pc-builder/pcBuilde.module.css";
+import {useSelector} from "react-redux";
+import {getDetails} from "@/utils/helpers/pcBuilder";
 
 const PcBuilderPage = ({categories}) => {
+  const pcBuilder = useSelector((state) => state.pcBuilder);
+
+  const {productCount, totalCost} = getDetails(pcBuilder);
+
   return (
     <section className="px-[5%] lg:px-[10%] xl:px-[20%] py-8 bg-[#f2f4f8]">
       <div className={styles.container}>
@@ -23,10 +29,10 @@ const PcBuilderPage = ({categories}) => {
             </div>
             <div className="flex justify-end">
               <div className={styles.items}>
-                <span>5 Items</span>
+                <span>{productCount} Items</span>
               </div>
               <div className={styles.amount}>
-                <span>100৳</span>
+                <span>{totalCost}৳</span>
               </div>
             </div>
           </div>
