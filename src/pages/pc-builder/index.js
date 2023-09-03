@@ -3,7 +3,7 @@ import RootLayout from "@/layouts/RootLayout";
 import {LuPcCase} from "react-icons/lu";
 import styles from "@/styles/pc-builder/pcBuilde.module.css";
 
-const PcBuilderPage = () => {
+const PcBuilderPage = ({categories}) => {
   return (
     <section className="px-[5%] lg:px-[10%] xl:px-[20%] py-8 bg-[#f2f4f8]">
       <div className={styles.container}>
@@ -32,10 +32,9 @@ const PcBuilderPage = () => {
           </div>
           <div className={styles.coreComponents}>Core Components</div>
           <div>
-            <PcBuilderCard />
-            <PcBuilderCard id={1} />
-            <PcBuilderCard />
-            <PcBuilderCard />
+            {categories.map((item) => (
+              <PcBuilderCard key={item._id} data={item} />
+            ))}
           </div>
         </div>
       </div>
@@ -47,4 +46,13 @@ export default PcBuilderPage;
 
 PcBuilderPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getServerSideProps = async () => {
+  const res = await fetch(`${process.env.BASE_URL}/categories`);
+  const result = await res.json();
+
+  return {
+    props: {categories: result.data},
+  };
 };

@@ -4,8 +4,10 @@ import Link from "next/link";
 import {IoMdClose} from "react-icons/io";
 import {LuRefreshCw} from "react-icons/lu";
 
-const PcBuilderCard = (props) => {
-  if (props.id == 1) {
+const PcBuilderCard = ({data}) => {
+  const {img, name} = data;
+
+  if (!name) {
     return (
       <div className={styles.item}>
         <div className={styles.img}>
@@ -48,14 +50,14 @@ const PcBuilderCard = (props) => {
       <div className={styles.img}>
         <Image
           alt=""
-          src={"/images/categroies/cpu.svg"}
+          src={img}
           height={30}
           width={30}
           //   layout="responsive"
         />
       </div>
       <div className={styles.details}>
-        <div className={styles.cat}>CPU</div>
+        <div className={styles.cat}>{name.toUpperCase()}</div>
         <div>
           <div className={styles.namePlaceholder}></div>
         </div>
@@ -66,7 +68,7 @@ const PcBuilderCard = (props) => {
         </div>
       </div>
       <div className={styles.actions}>
-        <Link href={"/pc-builder/motherboard"}>
+        <Link href={`/pc-builder/${name}`}>
           <button className={styles.btn}>Chose</button>
         </Link>
       </div>
