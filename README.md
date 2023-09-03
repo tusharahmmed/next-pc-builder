@@ -8,8 +8,8 @@ A PC Builder Web Application using `NEXT.js`
 
 ## Screenshots
 
-![screenshot](https://github.com/tusharahmmed/next-pc-builder/blob/screenshot1.png)
-![screenshot](https://github.com/tusharahmmed/next-pc-builder/blob/screenshot2.png)
+![screenshot](https://github.com/tusharahmmed/next-pc-builder/blob/main/screenshot1.png)
+![screenshot](https://github.com/tusharahmmed/next-pc-builder/blob/main/screenshot2.png)
 
 ## Features
 
