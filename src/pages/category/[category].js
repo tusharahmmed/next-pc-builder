@@ -10,9 +10,7 @@ const CategoryProducts = ({data}) => {
           {data?.data[0]?.category?.toUpperCase()}
         </h1>
       </div>
-      <div
-        style={{gridTemplateColumns: "repeat(5,1fr)"}}
-        className={`${styles.productWraper}`}>
+      <div className={`${styles.productWraper}`}>
         {data?.data?.map((item) => (
           <ProductCard key={item._id} data={item} />
         ))}
